@@ -45,7 +45,8 @@ HTML;
         $this->html .= <<<HTML
     </ul>
 </nav>
-HTML; 
+HTML;
+        file_put_contents("log.txt","BREADCRUMB => ".var_export($this->html,true)."\r\n",FILE_APPEND);
     }
 
     private function setElements(){
@@ -54,8 +55,9 @@ HTML;
         if(!$categories instanceof WP_Error){
             foreach($categories as $category_term){
                 $category = $category_term->to_array();
+                file_put_contents("log.txt","BreadcrumbContainer setElements category => ".var_export($category,true)."\r\n",FILE_APPEND);
                 $this->elements[] = new BreadcrumbItem([
-                    'id' => $category['id'], 'name' => $category['name']
+                    'id' => $category['term_id'], 'name' => $category['name']
                 ]);
             }
         }
