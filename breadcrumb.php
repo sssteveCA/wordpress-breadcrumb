@@ -20,8 +20,8 @@ require_once "classes/breadcrumbcontainer.php";
 require_once "classes/breadcrumbitem.php";
 require_once "classes/hooksclass.php";
 
-add_filter('the_title', function(string $post_title, int $post_id){
-    return HooksClass::cb_show_breadcrumb($post_title,$post_id);
+add_action('the_post', function(WP_Post $post, WP_Query $query){
+    return HooksClass::cb_show_breadcrumb($post,$query);
 },11,2);
 
 add_action('wp_enqueue_scripts','cb_scripts');
