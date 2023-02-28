@@ -17,9 +17,10 @@ use Breadcrumb\Classes\BreadcrumbContainer;
 use Breadcrumb\Classes\BreadcrumbItem;
 
 require_once "classes/breadcrumbcontainer.php";
+require_once "classes/breadcrumbitem.php";
 
-add_action('wp_head','br_show_breadcrumb',11);
-function br_show_breadcrumb(){
+add_action('wp_head','cb_show_breadcrumb',11);
+function cb_show_breadcrumb(){
     global $post;
     $britem = new BreadcrumbContainer($post);
 }

@@ -18,6 +18,7 @@ class BreadcrumbContainer{
     {
         file_put_contents("log.txt","POST => ".var_export($post->to_array(),true)."\r\n",FILE_APPEND);
         $this->post = $post;
+        $this->setElements();
         $this->createBreadcrumb();
     }
 
@@ -34,26 +35,33 @@ class BreadcrumbContainer{
     }
 
     private function createBreadcrumb(){
-        $categories = wp_get_post_categories($this->post->ID,['fields' => 'all']);
-        if(!$categories instanceof WP_Error){
-            file_put_contents("log.txt","Categories => ".var_export($categories,true)."\r\n",FILE_APPEND);
         $this->html = <<<HTML
-<ul class="br_custom_breadcrumb">
+<nav class="cb_nav">
+    <ul class="cb_ul_breadcrumb">
 HTML;
-            foreach($categories as $category){
-            }
+        foreach($this->elements as $element){
+            $this->html .= $element->getHtml();
+        }
         $this->html .= <<<HTML
-</ul>
-HTML;
-        }  
+    </ul>
+</nav>
+HTML; 
     }
 
-    private function setElements(array $categories){
+    private function setElements(){
         $this->elements[] = new BreadcrumbItem(['name' => 'Home', 'url' => get_home_url()]);
-        foreach($categories as $category){
-            $breadcrumbitem = new BreadcrumbItem($category);
+        $categories = wp_get_post_categories($this->post->ID,['fields' => 'all']);
+        if(!$categories instanceof WP_Error){
+            foreach($categories as $category_term){
+                $category = $category_term->to_array();
+                $this->elements[] = new BreadcrumbItem([
+                    'id' => $category['id'], 'name' => $category['name']
+                ]);
+            }
         }
-        $this->elements[] = new BreadcrumbItem(['name' => $this->post->post_title]);
+        $this->elements[] = new BreadcrumbItem([
+            'active' => true, 'name' => $this->post->post_title
+        ]);
     }
 }
 ?>
