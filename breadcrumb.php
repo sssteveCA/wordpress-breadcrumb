@@ -2,11 +2,13 @@
 
 /**
  * Plugin Name: Custom Breadcrumb
- * Version: 0.1
+ * Plugin URI: https://custombreadcrumb.com/custom_breadcrumb
+ * Version: 1.0
  * Description: Set a breadcrumb for your Wordpress site pages to improve the user navigation experience
  * Author: Stefano Puggioni
  * Requires PHP: 8.0
  * Requires at least: 5.2
+ * Text Domain: custom-breadcrumb
  * License: GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
