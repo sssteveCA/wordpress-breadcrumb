@@ -13,15 +13,14 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
+use Breadcrumb\Classes\BreadcrumbContainer;
 use Breadcrumb\Classes\BreadcrumbItem;
 
-require_once "classes/breadcrumbitem.php";
+require_once "classes/breadcrumbcontainer.php";
 
 add_action('wp_head','br_show_breadcrumb',11);
 function br_show_breadcrumb(){
     global $post;
-    file_put_contents("log.txt","POST => ".var_export($post->to_array(),true)."\r\n",FILE_APPEND);
-    $britem = new BreadcrumbItem($post);
-
+    $britem = new BreadcrumbContainer($post);
 }
 ?>
