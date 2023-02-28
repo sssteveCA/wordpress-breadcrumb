@@ -8,8 +8,8 @@ use WP_Term;
 
 class BreadcrumbContainer{
 
-    private array $categories = [];
-    private string $html_breadcrumb = "";
+    private array $elements = [];
+    private string $html = "";
     private WP_Post $post;
     private int $errno = 0;
     private ?string $error = null;
@@ -21,8 +21,8 @@ class BreadcrumbContainer{
         $this->createBreadcrumb();
     }
 
-    public function getCategories(){return $this->categories;}
-    public function getHtmlBreadcrumb(){return $this->post;}
+    public function getElements(){return $this->elements;}
+    public function getHtml(){return $this->html;}
     public function getPost(){return $this->post;}
     public function getErrno(){return $this->errno;}
     public function getError(){
@@ -36,24 +36,22 @@ class BreadcrumbContainer{
     private function createBreadcrumb(){
         $categories = wp_get_post_categories($this->post->ID,['fields' => 'all']);
         if(!$categories instanceof WP_Error){
-           $this->categories = $categories;
             file_put_contents("log.txt","Categories => ".var_export($categories,true)."\r\n",FILE_APPEND);
-        $this->html_breadcrumb = <<<HTML
+        $this->html = <<<HTML
 <ul class="br_custom_breadcrumb">
 HTML;
-            foreach($this->categories as $category){
-                $this->getCategoryLink($category);
+            foreach($categories as $category){
             }
-        $this->html_breadcrumb .= <<<HTML
+        $this->html .= <<<HTML
 </ul>
 HTML;
         }  
     }
 
-    private function getCategoryLink(WP_Term $term): string{
-        $category_url = get_category_link($term->term_id);
-        file_put_contents("log.txt","Category URL => ".var_export($category_url,true)."\r\n",FILE_APPEND);
-        return "";
+    private function setElements(array $categories){
+        foreach($categories as $category){
+            $breadcrumbitem = new BreadcrumbItem($category);
+        }
     }
 }
 ?>
