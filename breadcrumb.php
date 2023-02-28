@@ -17,6 +17,7 @@ use Breadcrumb\Classes\BreadcrumbContainer;
 
 require_once "classes/breadcrumbcontainer.php";
 require_once "classes/breadcrumbitem.php";
+require_once "classes/hooksclass.php";
 
 add_filter('the_title','cb_show_breadcrumb',11,2);
 function cb_show_breadcrumb(string $post_title, int $post_id){
