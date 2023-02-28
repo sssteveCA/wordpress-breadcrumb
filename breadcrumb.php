@@ -14,14 +14,14 @@
  */
 
 use Breadcrumb\Classes\BreadcrumbContainer;
-use Breadcrumb\Classes\BreadcrumbItem;
 
 require_once "classes/breadcrumbcontainer.php";
 require_once "classes/breadcrumbitem.php";
 
-add_action('wp_head','cb_show_breadcrumb',11);
-function cb_show_breadcrumb(){
+add_filter('the_title','cb_show_breadcrumb',11,2);
+function cb_show_breadcrumb(string $post_title, int $post_id){
     global $post;
-    $britem = new BreadcrumbContainer($post);
+    $br_container = new BreadcrumbContainer($post);
+    return $br_container->getHtml().$post_title;
 }
 ?>
