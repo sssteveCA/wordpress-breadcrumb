@@ -14,15 +14,17 @@
  */
 
 use Breadcrumb\Classes\BreadcrumbContainer;
+use Breadcrumb\Classes\HooksClass;
 
 require_once "classes/breadcrumbcontainer.php";
 require_once "classes/breadcrumbitem.php";
 require_once "classes/hooksclass.php";
 
-add_filter('the_title','cb_show_breadcrumb',11,2);
-function cb_show_breadcrumb(string $post_title, int $post_id){
-    global $post;
-    $br_container = new BreadcrumbContainer($post);
-    return $br_container->getHtml().$post_title;
+add_filter('the_title', 'HooksClass::cb_show_breadcrumb',11,2);
+
+add_action('wp_enqueue_scripts','cb_scripts');
+function cb_scripts(){
+    $plugin_url = plugin_dir_url(__FILE__);
+    wp_enqueue_style('cb_breadcrumb_css',$plugin_url.'/css/breadcrumb.css',[],null);
 }
 ?>
