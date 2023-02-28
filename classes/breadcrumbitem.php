@@ -2,27 +2,33 @@
 
 namespace Breadcrumb\Classes;
 
+use WP_Error;
 use WP_Term;
 
 class BreadcrumbItem{
 
-    private array $item_info = [
-        'name' => '', 'url' => ''
-    ];
+    private int $id;
+    private string $name;
+    private string $url;
 
-    public function __construct(array $term)
+    public function __construct(array $params)
     {
-        $this->setItemInfo($term);
+        $this->setItemInfo($params);
     }
 
-    public function getItemInfo(){return $this->item_info;}
+    public function getId(){return $this->id;}
+    public function getName(){return $this->name;}
+    public function getUrl(){return $this->url;}
 
-    private function setItemInfo(array $term){
-        $this->item_info['name'] = $term['name'];
-        if(isset($term['term_id']))
-            $this->item_info['url'] = get_category_link($term['term_id']);
-        else if(isset($term['url']))
-            $this->item_info['url'] = $term['url'];
+    private function setItemInfo(array $params){
+        $this->id = isset($params['id']) ? $params['id'] : '';
+        $this->name = isset($params['name']) ? $params['name'] : '';
+        if($this->id != ''){
+            $url = get_category_link($this->id);
+            $this->url = (!$url instanceof WP_Error) ? $url : '';
+        }
+        else
+            $this->url = isset($params['url']) ? $params['url'] : '';
     }
 }
 ?>

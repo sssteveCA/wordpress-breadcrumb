@@ -49,10 +49,11 @@ HTML;
     }
 
     private function setElements(array $categories){
-        $this->elements[] = new BreadcrumbItem([]);
+        $this->elements[] = new BreadcrumbItem(['name' => 'Home', 'url' => get_home_url()]);
         foreach($categories as $category){
             $breadcrumbitem = new BreadcrumbItem($category);
         }
+        $this->elements[] = new BreadcrumbItem(['name' => $this->post->post_title]);
     }
 }
 ?>
