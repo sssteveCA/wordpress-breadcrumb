@@ -39,14 +39,15 @@ class BreadcrumbContainer{
 <nav class="cb_nav">
     <ul class="cb_ul_breadcrumb">
 HTML;
-        foreach($this->elements as $element){
+        foreach($this->elements as $key => $element){
             $this->html .= $element->getHtml();
+            if($key != array_key_last($this->elements)) $this->html .= '<li>&gt;</li>';
         }
         $this->html .= <<<HTML
     </ul>
 </nav>
 HTML;
-        file_put_contents("log.txt","BREADCRUMB => ".var_export($this->html,true)."\r\n",FILE_APPEND);
+        //file_put_contents("log.txt","BREADCRUMB => ".var_export($this->html,true)."\r\n",FILE_APPEND);
     }
 
     private function setElements(){
@@ -55,7 +56,7 @@ HTML;
         if(!$categories instanceof WP_Error){
             foreach($categories as $category_term){
                 $category = $category_term->to_array();
-                file_put_contents("log.txt","BreadcrumbContainer setElements category => ".var_export($category,true)."\r\n",FILE_APPEND);
+                //file_put_contents("log.txt","BreadcrumbContainer setElements category => ".var_export($category,true)."\r\n",FILE_APPEND);
                 $this->elements[] = new BreadcrumbItem([
                     'id' => $category['term_id'], 'name' => $category['name']
                 ]);

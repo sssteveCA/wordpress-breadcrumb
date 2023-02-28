@@ -4,5 +4,16 @@
         font-size: 16px
         font-weight: normal
         margin-bottom: 30px
+        ul.cb_ul_breadcrumb
+            display: flex
+            list-style-type: none
+            white-space: nowrap
+            overflow: hidden
+            li
+                &:not(:first-child)
+                    margin-left: 5px
+                &.cb_breadcrumb_item
+                    &:hover
+                        background-color: yellow
 
 @include breadcrumb-style()

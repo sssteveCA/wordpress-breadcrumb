@@ -29,4 +29,9 @@ function cb_scripts(){
     $plugin_url = plugin_dir_url(__FILE__);
     wp_enqueue_style('cb_breadcrumb_css',$plugin_url.'/css/breadcrumb.css',[],null);
 }
+
+/* add_action('all','cb_debug_all');
+function cb_debug_all(){
+    file_put_contents("log.txt",current_action()."\r\n",FILE_APPEND);
+} */
 ?>

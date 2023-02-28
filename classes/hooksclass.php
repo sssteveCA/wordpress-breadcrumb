@@ -8,7 +8,7 @@ use WP_Query;
 class HooksClass{
 
     public static function cb_show_breadcrumb(WP_Post $post, WP_Query $query){
-        if(!is_home() && !is_front_page()){
+        if(!is_home() && !is_front_page() && !is_category()){
             $br_container = new BreadcrumbContainer($post);
             $post->post_title =  $br_container->getHtml().$post->post_title;
         }
