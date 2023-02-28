@@ -49,6 +49,7 @@ HTML;
     }
 
     private function setElements(array $categories){
+        $this->elements[] = new BreadcrumbItem([]);
         foreach($categories as $category){
             $breadcrumbitem = new BreadcrumbItem($category);
         }

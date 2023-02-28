@@ -10,18 +10,19 @@ class BreadcrumbItem{
         'name' => '', 'url' => ''
     ];
 
-    public function __construct(WP_Term $term)
+    public function __construct(array $term)
     {
         $this->setItemInfo($term);
     }
 
     public function getItemInfo(){return $this->item_info;}
 
-    private function setItemInfo(WP_Term $term){
-        $category_url = get_category_link($term->term_id);
-        $this->item_info = [
-            'name' => $term->name, 'url' => $category_url
-        ];
+    private function setItemInfo(array $term){
+        $this->item_info['name'] = $term['name'];
+        if(isset($term['term_id']))
+            $this->item_info['url'] = get_category_link($term['term_id']);
+        else if(isset($term['url']))
+            $this->item_info['url'] = $term['url'];
     }
 }
 ?>
