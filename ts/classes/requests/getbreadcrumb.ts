@@ -1,15 +1,25 @@
 
 
-export default class GetBreadcrumb{
+export type GetBreadcrumbData = {
+    post_id: string;
+}
 
+export class GetBreadcrumb{
+
+    private _post_id: string;
     private _errno: number = 0;
     private _error: string|null = null;
+
+    constructor(data: GetBreadcrumbData){
+        this._post_id = data.post_id;
+    }
 
     public static ERR_FETCH: number = 1;
     private static ERR_FETCH_MSG: string = "Errore durante l'esecuzione della richiesta";
 
     private static FETCH_URL: string = "/www.lafilosofiadibianca.com/wp-content/plugins/breadcrumb/scripts/getbreadcrumb.php";
 
+    get post_id(){return this._post_id;}
     get errno(){return this._errno;}
     get error(){
         switch(this._errno){
@@ -41,7 +51,7 @@ export default class GetBreadcrumb{
 
     private async getBreadcrumbPromise(): Promise<string>{
         return await new Promise<string>((resolve,reject)=>{
-            fetch(GetBreadcrumb.FETCH_URL).then(res => {
+            fetch(`${GetBreadcrumb.FETCH_URL}?post_id=${this._post_id}`).then(res => {
                 resolve(res.text())
             }).catch(err => {
                 reject(err)
