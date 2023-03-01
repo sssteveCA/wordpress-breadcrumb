@@ -22,3 +22,7 @@ A simple plugin for Wordpress that displays a breadcrumb in every page improving
     </li>
   </ul>
 </div>
+<br>
+<div>
+<a href="https://user-images.githubusercontent.com/95185311/222216662-f97dd023-82f0-4a02-8303-4efb701a1eb4.jpg">An example of the outputted breadcrumb</a>
+</div>
