@@ -52,7 +52,8 @@ class BreadcrumbContainer{
 HTML;
         foreach($this->elements as $key => $element){
             $this->html .= $element->getHtml();
-            if($key != array_key_last($this->elements)) $this->html .= '<li>&gt;</li>';
+            $li_separator = apply_filters('cb_li_separator_filter','&gt');
+            if($key != array_key_last($this->elements)) $this->html .= '<li>'.$li_separator.'</li>';
         }
         $this->html .= <<<HTML
     </ul>
