@@ -30,7 +30,9 @@ function cb_scripts(){
     $plugin_url = plugin_dir_url(__FILE__);
     wp_enqueue_style('cb_breadcrumb_css',$plugin_url.'/css/breadcrumb.css',[],null);
     wp_enqueue_script('cb_breadcrumb_js',$plugin_url.'/js/breadcrumb.js',[],null,true);
-    wp_localize_script('cb_breadcrumb_js','breadcrumb_vars',['post_id' => $post->ID]);
+    wp_localize_script('cb_breadcrumb_js','breadcrumb_vars',[
+        'post_id' => $post->ID, 'home' => is_home(), 'front' => is_front_page(), 'category' => is_category()
+    ]);
 }
 
 add_filter('script_loader_tag','cb_js_tags',10,3);

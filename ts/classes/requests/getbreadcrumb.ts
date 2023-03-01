@@ -1,8 +1,5 @@
+import { GetBreadcrumbData } from "../../types.js";
 
-
-export type GetBreadcrumbData = {
-    post_id: string;
-}
 
 export class GetBreadcrumb{
 
