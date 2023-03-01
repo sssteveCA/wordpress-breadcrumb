@@ -17,10 +17,6 @@ use Breadcrumb\Interfaces\Constants as C;
 
 require_once "interfaces/constants.php";
 
-/* add_action('the_post', function(WP_Post $post, WP_Query $query){
-    return HooksClass::cb_show_breadcrumb($post,$query);
-},11,2); */
-
 add_action('wp_enqueue_scripts','cb_scripts');
 function cb_scripts(){
     global $post;
@@ -39,34 +35,6 @@ function cb_js_tags(string $tag, string $handle, string $src){
         $tag = '<script type="module" src="'.esc_url($src).'" defer></script>';
     }
     return $tag;
-}
-
-/* add_action('all','cb_debug_all');
-function cb_debug_all(){
-    file_put_contents("log.txt",current_action()."\r\n",FILE_APPEND);
-} */
-
-add_action('cb_enqueue_scripts','cb_custom_scripts');
-function cb_custom_scripts(){
-    file_put_contents("log.txt","cb_enqueue_scripts\r\n",FILE_APPEND);
-}
-
-add_filter('cb_nav_atts_filter','cb_nav_atts');
-function cb_nav_atts(array $atts){
-    file_put_contents("log.txt","cb_nav_atts\r\n",FILE_APPEND);
-    file_put_contents("log.txt","array => ".var_export($atts,true)."\r\n",FILE_APPEND);
-}
-
-add_filter('cb_ul_atts_filter','cb_ul_atts');
-function cb_ul_atts(array $atts){
-    file_put_contents("log.txt","cb_ul_atts\r\n",FILE_APPEND);
-    file_put_contents("log.txt","array => ".var_export($atts,true)."\r\n",FILE_APPEND);
-}
-
-add_filter('cb_li_atts_filter','cb_li_atts');
-function cb_li_atts(array $atts){
-    file_put_contents("log.txt","cb_li_atts\r\n",FILE_APPEND);
-    file_put_contents("log.txt","array => ".var_export($atts,true)."\r\n",FILE_APPEND);
 }
 
 ?>

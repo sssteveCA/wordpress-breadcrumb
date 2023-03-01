@@ -4,7 +4,7 @@ import { BreadcrumbVars, GetBreadcrumbData } from "./types.js";
 declare const breadcrumb_vars: BreadcrumbVars;
 
 jQuery(()=>{
-    console.log(breadcrumb_vars);
+    //console.log(breadcrumb_vars);
     fetchBreadcrumb(breadcrumb_vars);
 });
 

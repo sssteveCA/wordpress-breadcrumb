@@ -6,6 +6,8 @@ trait BreadcrumbGeneral{
 
     /**
      * Create the attributes part of an HTML element
+     * @param array the attribute names and values of the HTML tag
+     * @return string
      */
     private function createAttributesString(array $atts): string{
         $string_atts = "";

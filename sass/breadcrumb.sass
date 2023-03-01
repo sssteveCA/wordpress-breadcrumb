@@ -1,11 +1,33 @@
+@use "sass:map"
+@use "modules/globals"
 
-@mixin breadcrumb-style()
-    nav.cb_nav
+
+@mixin responsive-font-size($map)
+    $xs: map.get($map, 'xs')
+    @media only screen and (min-width: #{$xs})
+        font-size: 10px
+    $sm: map.get($map, 'sm')
+    @media only screen and (min-width: #{$sm})
+        font-size: 12px
+    $md: map.get($map, 'md')
+    @media only screen and (min-width: #{$md})
+        font-size: 14px
+    $lg: map.get($map, 'lg')
+    @media only screen and (min-width: #{$lg})
         font-size: 16px
+    $xl: map.get($map, 'xs')
+    @media only screen and (min-width: #{$xl})
+        font-size: 18px
+
+
+@mixin breadcrumb-style($map)
+    nav.cb_nav
+        @include responsive-font-size($map)   
         font-weight: normal
         margin-bottom: 30px
         ul.cb_ul_breadcrumb
             display: flex
+            align-items: center
             list-style-type: none
             white-space: nowrap
             overflow: hidden
@@ -16,4 +38,4 @@
                     &:hover
                         background-color: yellow
 
-@include breadcrumb-style()
+@include breadcrumb-style(globals.$breakpoints)
