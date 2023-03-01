@@ -2,7 +2,11 @@
 
 namespace Breadcrumb\Classes;
 
+use Breadcrumb\Traits\BreadcrumbGeneral;
+
 class BreadcrumbItem{
+
+    use BreadcrumbGeneral;
 
     private bool $active;
     private string $id;
@@ -44,10 +48,11 @@ class BreadcrumbItem{
     private function setHtml(){
         $li_atts = [ 'class' => 'cb_breadcrumb_item' ];
         $li_atts = apply_filters('cb_li_atts_filter',$li_atts);
+        $li_atts_string = $this->createAttributesString($li_atts);
         if(!$this->active){
             if($this->url != ''){
                 $this->html = <<<HTML
-<li class="{$li_atts['classes']}">
+<li {$li_atts_string}>
     <a href="{$this->url}">{$this->name}</a>
 </li>
 HTML; 

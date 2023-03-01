@@ -2,11 +2,13 @@
 
 namespace Breadcrumb\Classes;
 
+use Breadcrumb\Traits\BreadcrumbGeneral;
 use WP_Error;
 use WP_Post;
-use WP_Term;
 
 class BreadcrumbContainer{
+
+    use BreadcrumbGeneral;
 
     private array $elements = [];
     private string $html = "";
@@ -40,11 +42,13 @@ class BreadcrumbContainer{
     private function createBreadcrumb(){
         $nav_atts = [ 'class' => 'cb_nav' ];
         $nav_atts = apply_filters('cb_nav_atts_filter',$nav_atts);
+        $nav_atts_string = $this->createAttributesString($nav_atts);
         $ul_atts = [ 'class' => 'cb_ul_breadcrumb' ];
         $ul_atts = apply_filters('cb_ul_atts_filter',$ul_atts);
+        $ul_atts_string = $this->createAttributesString($ul_atts);
         $this->html = <<<HTML
-<nav class="{$nav_atts['class']}">
-    <ul class="{$ul_atts['class']}">
+<nav {$nav_atts_string}>
+    <ul {$ul_atts_string}>
 HTML;
         foreach($this->elements as $key => $element){
             $this->html .= $element->getHtml();
