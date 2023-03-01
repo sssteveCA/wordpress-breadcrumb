@@ -9,5 +9,14 @@ jQuery(()=>{
         post_id: breadcrumb_vars.post_id 
     }
     let breadcrumb: GetBreadcrumb = new GetBreadcrumb(breadcrumbData);
-    breadcrumb.getBreadcrumb();
+    breadcrumb.getBreadcrumb().then(res => {
+        if(res != ""){
+            insertBreadcrumb(res);
+        }
+    })
 });
+
+function insertBreadcrumb(breadcrumb: string): void{
+    let masthead = jQuery('#masthead');
+    jQuery(breadcrumb).insertAfter(masthead);
+}

@@ -16,7 +16,7 @@ class BreadcrumbContainer{
 
     public function __construct(WP_Post $post)
     {
-        file_put_contents("log.txt","POST => ".var_export($post->to_array(),true)."\r\n",FILE_APPEND);
+        //file_put_contents("log.txt","POST => ".var_export($post->to_array(),true)."\r\n",FILE_APPEND);
         $this->post = $post;
         $this->setElements();
         $this->createBreadcrumb();
