@@ -27,8 +27,8 @@ require_once "classes/hooksclass.php";
 add_action('wp_enqueue_scripts','cb_scripts');
 function cb_scripts(){
     $plugin_url = plugin_dir_url(__FILE__);
-    wp_enqueue_style('cb_breadcrumb_css',$plugin_url.'/css/breadcrumb.css',[],null);
-    wp_enqueue_script('cb_breadcrumb_js',$plugin_url.'/js/breadcrumb.js',[],null,true);
+    wp_enqueue_style('cb_breadcrumb_css',$plugin_url.'css/breadcrumb.css',[],null);
+    wp_enqueue_script('cb_breadcrumb_js',$plugin_url.'js/breadcrumb.js',[],null,true);
 }
 
 add_filter('script_loader_tag','cb_js_tags',10,3);
