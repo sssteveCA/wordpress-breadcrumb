@@ -13,9 +13,11 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
 
+use Breadcrumb\Interfaces\Constants as C;
 use Breadcrumb\Classes\BreadcrumbContainer;
 use Breadcrumb\Classes\HooksClass;
 
+require_once "interfaces/constants.php";
 require_once "classes/breadcrumbcontainer.php";
 require_once "classes/breadcrumbitem.php";
 require_once "classes/hooksclass.php";
@@ -28,16 +30,17 @@ add_action('wp_enqueue_scripts','cb_scripts');
 function cb_scripts(){
     global $post;
     $plugin_url = plugin_dir_url(__FILE__);
-    wp_enqueue_style('cb_breadcrumb_css',$plugin_url.'/css/breadcrumb.css',[],null);
-    wp_enqueue_script('cb_breadcrumb_js',$plugin_url.'/js/breadcrumb.js',[],null,true);
-    wp_localize_script('cb_breadcrumb_js','breadcrumb_vars',[
+    wp_enqueue_style(C::BREADCRUMB_H_CSS,$plugin_url.C::BREADCRUMB_PATH_CSS,[],null);
+    wp_enqueue_script(C::BREADCRUMB_H_JS,$plugin_url.C::BREADCRUMB_PATH_JS,[],null,true);
+    wp_localize_script(C::BREADCRUMB_H_JS,'breadcrumb_vars',[
         'post_id' => $post->ID, 'home' => is_home(), 'front' => is_front_page(), 'category' => is_category()
     ]);
+    do_action('cb_enqueue_scripts');
 }
 
 add_filter('script_loader_tag','cb_js_tags',10,3);
 function cb_js_tags(string $tag, string $handle, string $src){
-    if($handle == 'cb_breadcrumb_js'){
+    if($handle == C::BREADCRUMB_H_JS){
         $tag = '<script type="module" src="'.esc_url($src).'" defer></script>';
     }
     return $tag;
@@ -47,4 +50,28 @@ function cb_js_tags(string $tag, string $handle, string $src){
 function cb_debug_all(){
     file_put_contents("log.txt",current_action()."\r\n",FILE_APPEND);
 } */
+
+add_action('cb_enqueue_scripts','cb_custom_scripts');
+function cb_custom_scripts(){
+    file_put_contents("log.txt","cb_enqueue_scripts\r\n",FILE_APPEND);
+}
+
+add_filter('cb_nav_atts_filter','cb_nav_atts');
+function cb_nav_atts(array $atts){
+    file_put_contents("log.txt","cb_nav_atts\r\n",FILE_APPEND);
+    file_put_contents("log.txt","array => ".var_export($atts,true)."\r\n",FILE_APPEND);
+}
+
+add_filter('cb_ul_atts_filter','cb_ul_atts');
+function cb_ul_atts(array $atts){
+    file_put_contents("log.txt","cb_ul_atts\r\n",FILE_APPEND);
+    file_put_contents("log.txt","array => ".var_export($atts,true)."\r\n",FILE_APPEND);
+}
+
+add_filter('cb_li_atts_filter','cb_li_atts');
+function cb_li_atts(array $atts){
+    file_put_contents("log.txt","cb_li_atts\r\n",FILE_APPEND);
+    file_put_contents("log.txt","array => ".var_export($atts,true)."\r\n",FILE_APPEND);
+}
+
 ?>

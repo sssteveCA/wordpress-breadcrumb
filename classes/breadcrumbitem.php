@@ -42,13 +42,12 @@ class BreadcrumbItem{
      * Generate the single <li> item
      */
     private function setHtml(){
-        $atts = [
-            'classes' => ''
-        ];
+        $li_atts = [ 'classes' => '' ];
+        $li_atts = apply_filters('cb_li_atts_filter',$li_atts);
         if(!$this->active){
             if($this->url != ''){
                 $this->html = <<<HTML
-<li class="cb_breadcrumb_item{$atts['classes']}">
+<li class="cb_breadcrumb_item{$li_atts['classes']}">
     <a href="{$this->url}">{$this->name}</a>
 </li>
 HTML; 
@@ -56,7 +55,7 @@ HTML;
         }//if(!$this->active){
         else{
             $this->html = <<<HTML
-<li class="cb_breadcrumb_item{$atts['classes']}">{$this->name}</li>
+<li class="cb_breadcrumb_item{$li_atts['classes']}">{$this->name}</li>
 HTML;
         }
     }
