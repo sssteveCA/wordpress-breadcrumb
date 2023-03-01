@@ -34,6 +34,9 @@ class BreadcrumbContainer{
         }
     }
 
+    /**
+     * Generate the breadcrumb
+     */
     private function createBreadcrumb(){
         $this->html = <<<HTML
 <nav class="cb_nav">
@@ -50,6 +53,9 @@ HTML;
         //file_put_contents("log.txt","BREADCRUMB => ".var_export($this->html,true)."\r\n",FILE_APPEND);
     }
 
+    /**
+     * Set the data before creating the breadcrumb
+     */
     private function setElements(){
         $this->elements[] = new BreadcrumbItem(['name' => 'Home', 'url' => get_home_url()]);
         $categories = wp_get_post_categories($this->post->ID,['fields' => 'all']);

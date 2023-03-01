@@ -33,12 +33,16 @@ export class GetBreadcrumb{
         return this._error;
     }
 
+    /**
+     * Get the generated HTML breadcrumb of the current post
+     * @returns the HTML of the breadcrumb to display
+     */
     public async getBreadcrumb(): Promise<string>{
         let response: string = "";
         this._errno = 0;
         try{
             await this.getBreadcrumbPromise().then(res => {
-                console.log(res);
+                //console.log(res);
                 response = res;
             }).catch(err => {
                 throw err;

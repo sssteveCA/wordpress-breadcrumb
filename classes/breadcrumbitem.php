@@ -22,6 +22,10 @@ class BreadcrumbItem{
     public function getUrl(){return $this->url;}
     public function isActive(){return $this->active;}
 
+    /**
+     * Set the data for each <li> item
+     * @param array $params
+     */
     private function setItemInfo(array $params){
         $this->active = isset($params['active']) ? $params['active'] : false;
         $this->id = isset($params['id']) ? $params['id'] : '';
@@ -34,6 +38,9 @@ class BreadcrumbItem{
         }  
     }
 
+    /**
+     * Generate the single <li> item
+     */
     private function setHtml(){
         $atts = [
             'classes' => ''
