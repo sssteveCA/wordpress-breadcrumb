@@ -14,13 +14,8 @@
  */
 
 use Breadcrumb\Interfaces\Constants as C;
-use Breadcrumb\Classes\BreadcrumbContainer;
-use Breadcrumb\Classes\HooksClass;
 
 require_once "interfaces/constants.php";
-require_once "classes/breadcrumbcontainer.php";
-require_once "classes/breadcrumbitem.php";
-require_once "classes/hooksclass.php";
 
 /* add_action('the_post', function(WP_Post $post, WP_Query $query){
     return HooksClass::cb_show_breadcrumb($post,$query);

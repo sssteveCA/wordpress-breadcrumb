@@ -3,6 +3,7 @@
 use Breadcrumb\Classes\HooksClass;
 
 require_once "../../../../wp-load.php";
+require_once "../traits/breadcrumbgeneral.php";
 require_once "../classes/breadcrumbcontainer.php";
 require_once "../classes/breadcrumbitem.php";
 require_once "../classes/hooksclass.php";

@@ -38,13 +38,13 @@ class BreadcrumbContainer{
      * Generate the breadcrumb
      */
     private function createBreadcrumb(){
-        $nav_atts = [ 'classes' => '' ];
+        $nav_atts = [ 'class' => 'cb_nav' ];
         $nav_atts = apply_filters('cb_nav_atts_filter',$nav_atts);
-        $ul_atts = [ 'classes' => '' ];
+        $ul_atts = [ 'class' => 'cb_ul_breadcrumb' ];
         $ul_atts = apply_filters('cb_ul_atts_filter',$ul_atts);
         $this->html = <<<HTML
-<nav class="cb_nav{$nav_atts['classes']}">
-    <ul class="cb_ul_breadcrumb{$ul_atts['classes']}">
+<nav class="{$nav_atts['class']}">
+    <ul class="{$ul_atts['class']}">
 HTML;
         foreach($this->elements as $key => $element){
             $this->html .= $element->getHtml();
