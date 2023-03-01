@@ -20,14 +20,23 @@ require_once "classes/breadcrumbcontainer.php";
 require_once "classes/breadcrumbitem.php";
 require_once "classes/hooksclass.php";
 
-add_action('the_post', function(WP_Post $post, WP_Query $query){
+/* add_action('the_post', function(WP_Post $post, WP_Query $query){
     return HooksClass::cb_show_breadcrumb($post,$query);
-},11,2);
+},11,2); */
 
 add_action('wp_enqueue_scripts','cb_scripts');
 function cb_scripts(){
     $plugin_url = plugin_dir_url(__FILE__);
     wp_enqueue_style('cb_breadcrumb_css',$plugin_url.'/css/breadcrumb.css',[],null);
+    wp_enqueue_script('cb_breadcrumb_js',$plugin_url.'/js/breadcrumb.js',[],null,true);
+}
+
+add_filter('script_loader_tag','cb_js_tags',10,3);
+function cb_js_tags(string $tag, string $handle, string $src){
+    if($handle == 'cb_breadcrumb_js'){
+        $tag = '<script type="module" src="'.esc_url($src).'" defer></script>';
+    }
+    return $tag;
 }
 
 /* add_action('all','cb_debug_all');
