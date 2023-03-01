@@ -3,7 +3,6 @@
 namespace Breadcrumb\Classes;
 
 use WP_Post;
-use WP_Query;
 
 class HooksClass{
 
