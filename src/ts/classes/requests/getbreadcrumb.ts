@@ -14,7 +14,7 @@ export class GetBreadcrumb{
     public static ERR_FETCH: number = 1;
     private static ERR_FETCH_MSG: string = "Errore durante l'esecuzione della richiesta";
 
-    private static FETCH_URL: string = "/www.lafilosofiadibianca.com/wp-content/plugins/breadcrumb/scripts/getbreadcrumb.php";
+    private static FETCH_URL: string = "/wp-content/plugins/breadcrumb/scripts/getbreadcrumb.php";
 
     get post_id(){return this._post_id;}
     get errno(){return this._errno;}
