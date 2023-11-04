@@ -1,4 +1,4 @@
-import { GetBreadcrumbData } from "../../types.js";
+import { GetBreadcrumbData } from "../../types";
 
 
 export class GetBreadcrumb{
