@@ -1,5 +1,5 @@
-import {GetBreadcrumb} from "./classes/requests/getbreadcrumb.js";
-import { BreadcrumbVars, GetBreadcrumbData } from "./types.js";
+import {GetBreadcrumb} from "./classes/requests/getbreadcrumb";
+import { BreadcrumbVars, GetBreadcrumbData } from "./types";
 
 declare const breadcrumb_vars: BreadcrumbVars;
 

@@ -9,7 +9,7 @@ interface Constants{
     const BREADCRUMB_H_JS = 'breadcrumb_js';
 
     //Paths
-    const BREADCRUMB_PATH_CSS = 'css/breadcrumb.css';
-    const BREADCRUMB_PATH_JS = 'js/breadcrumb.js';
+    const BREADCRUMB_PATH_CSS = 'dist/css/breadcrumb.css';
+    const BREADCRUMB_PATH_JS = 'dist/js/breadcrumb.js';
 }
 ?>
