@@ -3,26 +3,28 @@ A simple plugin for Wordpress that displays a breadcrumb in every page improving
 </div>
 <br><br>
 <div>
-  This plugins contains some custom actions and filters to extend the plugin functionalities:<br>
-  <ul>
-    <li>
-      <b>cb_enqueue_scripts</b>: an action to enqueue your css and js files right after the plugin default files 
-    </li>
-    <li>
-      <b>cb_nav_atts_filter</b>: a filter for <nav> tag attributes adding/editing
-    </li>
-    <li>
-      <b>cb_ul_atts_filter</b>: a filter for &ltul&gt tag attributes adding/editing
-    </li>
-    <li>
-      <b>cb_li_separator_filter</b>: a filter for breadcrumb separator editing
-    </li>
-    <li>
-      <b>cb_li_atts_filter</b>: a filter for &ltli&gt tag attributes (excluded &ltli&gt separators) adding/editing
-    </li>
-  </ul>
+    You need <a href="https://nodejs.org/en/download">NodeJs</a> and <a href="https://nodejs.org/en/download">Composer</a> to compile your sources.<br><br>
 </div>
-<br>
 <div>
+    Next run from your terminal:<br>
+    <ul>
+        <li><b>npm i</b></li>
+        <li><b>composer install</b></li>
+        <li><b>npm run dev</b></li>
+    </ul>
+    
+</div>
+<div>
+    <br><br>
+    If you want use this plugin in production:<br>
+    <ul>
+       <li><b>npm i --omit=dev</b></li>
+       <li><b>composer install --optmize=autoloader --no-dev</b></li>
+       <li><b>npm run build</b></li>
+       <li>Create the .zip archive with this command: <b>zip -r classes dist interfaces node_modules scripts traits breadcrumb.php</b></li>
+       <li>Install the plugin uploading the created zip file</li>
+    </ul>
+</div>
+<br><br>
 <a href="https://user-images.githubusercontent.com/95185311/222216662-f97dd023-82f0-4a02-8303-4efb701a1eb4.jpg">An example of the outputted breadcrumb</a>
 </div>
